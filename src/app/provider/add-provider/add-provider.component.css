@@ -1,0 +1,105 @@
+agm-map {
+    height: 320px;
+  }
+
+  .content{
+    display: grid;
+    grid-template-columns: 1fr;
+
+    grid-column: 2/3;
+    
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    padding: 5px;
+    margin: 5px;
+  }
+
+  .name{
+    display:grid;    
+    grid-template-columns: 30% 70%;
+    margin-top: 2px;
+    margin-bottom: 2px;    
+    padding: 5px;
+  }
+
+
+  .name label{
+    justify-self: center;
+    align-self: center;
+  }
+
+  .name input{
+    height: 18px;
+  }
+
+
+  .address{
+    display: grid;
+    grid-template-columns: 30% 70%;    
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 5px;
+    /*border-style: solid;
+    border-color: black;
+    border-width: 1px;*/
+  }
+
+  .address label{
+    justify-self: center;
+    align-self: center;
+  }
+
+  .address input{
+    height: 18px;
+  }
+
+  .suite{
+    display: grid;
+    grid-template-columns: 30% 30%;    
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 5px;    
+  }
+
+  .suite label{
+    justify-self: center;
+    align-self: center;
+  }
+
+  .suite input{
+    height: 18px;
+  }
+
+  .images{
+    display: grid;
+    grid-template-columns: 30% 60%;
+
+    margin-top: 2px;
+    margin-bottom: 2px;
+
+    padding: 5px;
+
+  
+  }
+
+  .images label{
+    justify-self: center;
+    align-self: center;
+  }
+
+  .images input{
+     
+  }
+
+  .save{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .save button{
+    justify-self: center;
+    width: 150px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }

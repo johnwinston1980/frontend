@@ -1,0 +1,26 @@
+<label>{{provider.name}}</label>
+<div class="content">
+
+  <div class="name">
+    <label>Name</label>
+    <input type="text" [(ngModel)]="category.name" placeholder="" name="name" />
+  </div>
+
+  <div class="description">
+    <label>Description</label>
+    <input type="text" [(ngModel)]="category.description" placeholder="brief description" name="description" />
+  </div>
+
+  <div class="image">
+    <label>Image</label>
+    <input type="file" class="button" (change)="detectFiles($event)" multiple>
+  </div>
+
+
+  <div class="save">
+    <button (click)="uploadMulti()"> Submit </button>
+  </div>
+
+
+
+</div>

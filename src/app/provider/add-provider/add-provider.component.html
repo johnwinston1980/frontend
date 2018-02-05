@@ -1,0 +1,39 @@
+<div class="content">
+
+  <div class="name">
+    <label>Store name</label>
+    <input type="text" [(ngModel)]="provider.name" placeholder="Store name" name="name" />
+  </div>
+
+  <div class="address">
+    <label>Address</label>
+    <input placeholder="type address" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search [formControl]="searchControl">
+  </div>
+
+  <div class="suite">
+    <label>Suite #</label>
+    <input type="text" [(ngModel)]="address.number" placeholder="Optional" name="suite" />
+  </div>
+
+  <div class="images">
+    <label>Images</label>
+    <input type="file" class="button" (change)="detectFiles($event)" multiple>
+  </div>
+
+
+  <div class="save">
+    <button [disabled]="!selectedFiles" (click)="uploadMulti()"> Submit </button>
+  </div>
+</div>
+
+
+<agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="10">
+  <agm-marker [latitude]="latitude" [longitude]="longitude">
+
+    <agm-info-window>
+      <h3>Howdy!</h3>
+      <p>You are here!</p>
+    </agm-info-window>
+
+  </agm-marker>
+</agm-map>

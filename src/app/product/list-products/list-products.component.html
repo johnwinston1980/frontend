@@ -1,0 +1,33 @@
+<div class="">
+    <label>{{provider.name}}</label>-->
+    <label>{{category.name}}</label>
+    <button type="button" (click)="addProduct()">Add Product</button>
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th width="50%">Name</th>
+          <th width="50%">Description</th>
+  
+        </tr>
+      </thead>
+  
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>
+            <strong>{{ product.name }}</strong>
+          </td>
+          <td>{{ product.description }}</td>
+          <td>
+            <ul>
+              <li>
+                <button type="button" (click)="editProduct(product)">
+                  Edit
+                </button>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

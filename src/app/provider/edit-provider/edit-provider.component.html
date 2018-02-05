@@ -1,0 +1,13 @@
+<div>
+  <label>Store name</label>
+  <input type="text" [(ngModel)]="provider.name" placeholder="Store name" name="name">
+</div>
+
+
+<button type="button" (click)="updateProvider()">Save Changes</button>
+
+<button type="button" class="btn btn-danger btn-xs" (click)="deleteProvider(provider)">
+  <span class="glyphicon glyphicon-trash"></span> Delete
+</button>
+
+<button type="button" (click)="addCategory()">Add Category</button>

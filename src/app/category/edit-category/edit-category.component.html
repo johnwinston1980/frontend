@@ -1,0 +1,15 @@
+<div>
+  <label>{{provider.name}}</label>
+  -->
+  <label>{{category.name}}</label>
+  <input type="text" [(ngModel)]="category.name" placeholder="Category name" name="name">
+</div>
+
+
+<button type="button" (click)="updateCategory()">Save Changes</button>
+
+<button type="button" class="btn btn-danger btn-xs" (click)="deleteCategory()">
+  <span class="glyphicon glyphicon-trash"></span> Delete
+</button>
+
+<button type="button" (click)="addProduct()">Add Product</button>
