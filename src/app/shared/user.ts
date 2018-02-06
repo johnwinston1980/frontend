@@ -1,5 +1,6 @@
 export interface User {
     id?: string;
     username?: string;  
-    roles?: Array<string>;    
+    displayName?: string;
+    roles?: Array<string>;      
   }

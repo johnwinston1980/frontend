@@ -11,12 +11,16 @@ import { AddProductComponent } from './product/add-product/add-product.component
 import { ListProductsComponent } from './product/list-products/list-products.component'
 import { EditProductComponent } from './product/edit-product/edit-product.component'
 
+import { LoginComponent } from './login/login.component'
+
+import { ProviderGuard } from './provider/shared/provider.guard'
+
 
 const routes: Routes = [
-  { path: '', component: ListProvidersComponent },
-  { path: 'add-provider', component: AddProviderComponent },
-  { path: 'list-providers', component: ListProvidersComponent },
-  { path: 'edit-provider', component: EditProviderComponent },
+  { path: '', component: LoginComponent },
+  { path: 'add-provider', component: AddProviderComponent, canActivate: [ProviderGuard]},
+  { path: 'list-providers', component: ListProvidersComponent, canActivate: [ProviderGuard]},
+  { path: 'edit-provider', component: EditProviderComponent, canActivate: [ProviderGuard]},
   { path: 'add-category', component: AddCategoryComponent },
   { path: 'list-categories', component: ListCategoriesComponent },
   { path: 'edit-category', component: EditCategoryComponent },

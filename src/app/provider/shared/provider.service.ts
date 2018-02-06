@@ -18,10 +18,12 @@ export class ProviderService {
 
   userId: any;
 
-  constructor(private afs: AngularFirestore, private uploadFiles: UploadFilesService) {
+  constructor(private afs: AngularFirestore, private uploadFiles: UploadFilesService) {}
 
+  init(userId){
     //cuando el user se loguea se guarda localmente el uid, para luego cargar los providers de este usuario
-    this.userId = localStorage.getItem('uid');
+    //var user = JSON.parse(localStorage.getItem('user'))
+    this.userId = userId
 
     //aqui esta la consulta, este codigo fue ctrl + C -> ctrl + V de algun lugar, con minimos cambios
     //this.providersCollection = this.afs.collection('providers/', ref => ref.where('userId', '==', `${this.userId}`));

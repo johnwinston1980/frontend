@@ -7,6 +7,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditProviderComponent } from '../edit-provider/edit-provider.component'
 import { ListProvidersComponent } from '../list-providers/list-providers.component'
 
+import {ProviderGuard} from '../shared/provider.guard';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -14,7 +17,7 @@ import { ListProvidersComponent } from '../list-providers/list-providers.compone
     ReactiveFormsModule,
   ],
   declarations: [EditProviderComponent, ListProvidersComponent],
-  providers: [],
+  providers: [ ProviderGuard ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]  
 })
 export class ProviderModule { }

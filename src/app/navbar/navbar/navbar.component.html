@@ -8,7 +8,7 @@
 
 
   <ul>
-    <li *ngIf="!(user | async)"> <a (click)="login()">Login</a> </li>
+    <!--<li *ngIf="!(user | async)"> <a (click)="login()">Login</a> </li>-->
     <li *ngIf="(user | async)">  <a (click)="logout()">Logout: {{displayName}}</a> </li>
   </ul>
 

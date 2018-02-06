@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import {Router, ActivatedRoute, Params} from '@angular/router';
+import * as _ from 'lodash'
+
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 
 import * as firebase from 'firebase/app';
+
+import { BroadcastObjectService } from '../../shared/broadcast-object.service'
+import { User } from '../../shared/user'
 
 @Component({
   selector: 'app-navbar',
@@ -14,49 +19,33 @@ import * as firebase from 'firebase/app';
 })
 export class NavbarComponent implements OnInit {
 
+  displayName: string;  
   user: Observable<firebase.User>;
-  displayName: string;
-  
-  constructor(private afAuth: AngularFireAuth, private router: Router) {
-    	this.user = afAuth.authState;      
-      //console.log(this.user);           
+
+  constructor(private broadcastOjectService: BroadcastObjectService,
+    private afAuth: AngularFireAuth, private router: Router) {
+      this.user = afAuth.authState;  
   }
 
-  ngOnInit() {
-      firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-           this.displayName = user.displayName;                      
-          }        
-      });   
-      var dname = new String(localStorage.getItem('dname'))     
-      if(dname.length > 0){
-        this.displayName = localStorage.getItem('dname');
-      }
-  }
-  
-
-  login() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((success) => {
-      localStorage.setItem('uid', success.user.uid);
-      localStorage.setItem('dname', success.user.displayName); 
-      this.displayName = success.user.displayName;   
-    	this.router.navigate(['/']);
+  ngOnInit() {        
+    var savedUser = JSON.parse(localStorage.getItem('user'))
+    if(!_.isEmpty(savedUser)){
+      this.broadcastOjectService.broadcastUser(savedUser);
     }
-    ).catch((err) => {
-    	console.log(err);
-    });
+    
+    this.broadcastOjectService.currentUser.subscribe(user => {      
+      this.displayName = user.displayName    
+    })
   }
 
   logout() {
-     this.afAuth.auth.signOut().then((success) => {
-      localStorage.removeItem('uid');      
-      localStorage.removeItem('dname');      
-    	this.router.navigate(['/']);
+    this.afAuth.auth.signOut().then((success) => {
+      localStorage.removeItem('user');
+      this.router.navigate(['']);
     }
     ).catch((err) => {
-    	console.log(err);
+      console.log(err);
     });
-     //this.fM.show('You are logged out', {cssClass: 'alert-success', timeout: 3000});
+    //this.fM.show('You are logged out', {cssClass: 'alert-success', timeout: 3000});
   }
-
 }

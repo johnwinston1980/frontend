@@ -13,11 +13,12 @@ import {Router} from '@angular/router';
 
 import {ProviderService} from '../shared/provider.service';
 
+
 @Component({
   selector: 'app-add-provider',
   templateUrl: './add-provider.component.html',
   styleUrls: ['./add-provider.component.css'],
-  providers: [ProviderService]
+  providers: [ ProviderService ]
 })
 
 export class AddProviderComponent implements OnInit {

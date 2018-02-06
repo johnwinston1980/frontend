@@ -17,7 +17,7 @@ export class LoginService {
     
   }
 
-  init(username){
+  init(username){    
     this.usersCollection = this.afs.collection(`users/${username}/roles`);
     this.users = this.usersCollection.snapshotChanges().map(changes => {
       return changes.map(a => {
@@ -28,10 +28,12 @@ export class LoginService {
     });
   }
 
-  /*getUserDetails(username) {
-    this.userDoc = this.afs.doc(`roles/${username}`);
-    this.users.
-    return this.userDoc.valueChanges();
-  }*/
+  getUsers() {
+    return this.users;
+  }
 
+  getUserDetails(username) {    
+    return this.afs.collection(`users`).doc(username);  
+  }
+  
 }
