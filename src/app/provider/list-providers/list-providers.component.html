@@ -1,30 +1,32 @@
 <div class="">
 
-    <button type="button" class="btn btn-edit btn-xs" (click)="addProvider()">Add Provider</button>
+  <button type="button" class="btn btn-edit btn-xs" (click)="addProvider()">Add Provider</button>
 
-    <table class="table">
-        <thead>
-          <tr>
-            <th width="50%">Name</th>
-            <th width="50%">Address</th>
-                    
-          </tr>
-        </thead>
-    
-        <tbody>   
-          <tr *ngFor="let provider of providers">
-            <td><strong>{{ provider.name }}</strong></td>
-            <td>{{ provider.address.formatted_address }}</td>          
-            <td>
-              <ul>               
-                <li>
-                  <button type="button" class="btn btn-edit btn-xs" (click)="editProvider(provider)">
-                    <span class="glyphicon glyphicon-edit"></span> Edit
-                  </button>
-                </li>
-              </ul>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th width="50%">Name</th>
+        <th width="50%">Address</th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let provider of providers">
+        <td>
+          <strong>{{ provider.name }}</strong>
+        </td>
+        <td>{{ provider.address.formatted_address }}</td>
+        <td>
+          <ul>
+            <li>
+              <button type="button" class="btn btn-edit btn-xs" (click)="editProvider(provider)">
+                <span class="glyphicon glyphicon-edit"></span> Edit
+              </button>
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

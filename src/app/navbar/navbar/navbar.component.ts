@@ -19,23 +19,27 @@ import { User } from '../../shared/user'
 })
 export class NavbarComponent implements OnInit {
 
-  displayName: string;  
-  user: Observable<firebase.User>;
+  displayName: string;
+  userAuthState: Observable<firebase.User>;
+  user: User;
 
   constructor(private broadcastOjectService: BroadcastObjectService,
     private afAuth: AngularFireAuth, private router: Router) {
-      this.user = afAuth.authState;  
+    this.userAuthState = afAuth.authState;
   }
 
-  ngOnInit() {        
+  ngOnInit() {
     var savedUser = JSON.parse(localStorage.getItem('user'))
-    if(!_.isEmpty(savedUser)){
+    if (!_.isEmpty(savedUser)) {
+      this.user = savedUser;
       this.broadcastOjectService.broadcastUser(savedUser);
     }
-    
-    this.broadcastOjectService.currentUser.subscribe(user => {      
-      this.displayName = user.displayName    
+
+    this.broadcastOjectService.currentUser.subscribe(user => {
+      this.displayName = user.displayName
+      this.user = user;
     })
+
   }
 
   logout() {
@@ -48,4 +52,13 @@ export class NavbarComponent implements OnInit {
     });
     //this.fM.show('You are logged out', {cssClass: 'alert-success', timeout: 3000});
   }
+
+  isCashier(): boolean {
+    return !_.isEmpty(_.intersection(['cashier'], this.user.roles))
+  }
+
+  isAdmin(): boolean {
+    return !_.isEmpty(_.intersection(['admin'], this.user.roles))
+  }
+
 }

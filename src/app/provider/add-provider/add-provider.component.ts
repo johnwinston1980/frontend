@@ -12,6 +12,7 @@ import { Address } from '../shared/address';
 import {Router} from '@angular/router';
 
 import {ProviderService} from '../shared/provider.service';
+import { BroadcastObjectService } from '../../shared/broadcast-object.service'
 
 
 @Component({
@@ -47,9 +48,15 @@ export class AddProviderComponent implements OnInit {
     private router:Router, 
     private mapsAPILoader: MapsAPILoader, 
     private ngZone: NgZone,   
-    private providerService: ProviderService) {}
+    private providerService: ProviderService,
+    private broadcastOjectService: BroadcastObjectService) {}
 
-  ngOnInit() {
+  ngOnInit() {    
+    
+    this.broadcastOjectService.currentUser.subscribe(user => {
+      this.providerService.init(user.id);
+    })
+
     //set google maps defaults
     this.zoom = 4;
     this.latitude = 39.8282;
@@ -112,6 +119,6 @@ export class AddProviderComponent implements OnInit {
 
   uploadMulti(){    
     this.providerService.addProvider(this.provider, this.selectedFiles);
-    //this.router.navigate(['/list-providers']);
+    this.router.navigate(['/list-providers']);
   }
 }

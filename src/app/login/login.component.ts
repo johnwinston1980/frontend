@@ -11,6 +11,8 @@ import * as firebase from 'firebase/app';
 import { LoginService } from './shared/login.service'
 import { User } from '../shared/user'
 
+import * as _ from 'lodash'
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,11 +22,7 @@ import { User } from '../shared/user'
 
 export class LoginComponent implements OnInit {
 
-  user: User = {
-    /*id: '',
-    username: '',
-    roles: [],*/
-  }
+  user: User = {}
 
   constructor(private broadcastOjectService: BroadcastObjectService,
     private loginService: LoginService,
@@ -43,26 +41,57 @@ export class LoginComponent implements OnInit {
       var user = new String(success.user.email)
       this.user.username = user.substring(0, user.indexOf('@'))
 
-      this.redirect(this.user.username);
+      this.setUpUser(this.user.username);
     }
     ).catch((err) => {
       console.log(err);
     });
   }
 
-  redirect(username) {
+  setUpUser(username) {
     var docRef = this.loginService.getUserDetails(username);
 
     docRef.ref.get().then((doc) => {
       if (doc.exists) {
         this.user.roles = doc.data().roles;
+        
+       
+        //if for example user is cashier get appropriate data
+        if(!_.isEmpty(doc.data().userId)){
+          this.user.userId = doc.data().userId          
+        }
+        if(!_.isEmpty(doc.data().providerId)){
+          this.user.providerId = doc.data().providerId          
+        }
+
+        
+        //now save to localStorage
         localStorage.setItem('user', JSON.stringify(this.user));
         this.broadcastOjectService.broadcastUser(this.user);
+
         //check where to redirect
+        this.redirect();
       }
       else {
-        console.log('no role for this user in datebase')
+        console.log('no role for this user in database')
       }
     })
-  }  
+    
+  }
+
+  redirect() {
+    if (!_.isEmpty(_.intersection(['admin'], this.user.roles))) {
+      this.router.navigate(['/add-user'])
+    }
+    else if (!_.isEmpty(_.intersection(['provider'], this.user.roles))) {
+      this.router.navigate(['/add-provider'])
+    }
+    else if (!_.isEmpty(_.intersection(['cashier'], this.user.roles))) {
+      this.router.navigate(['/list-orders'])
+    }
+    else {
+      console.log('redirect to an error page')
+    }
+  }
+
 }

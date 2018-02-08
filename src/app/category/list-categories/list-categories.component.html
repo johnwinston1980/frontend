@@ -1,6 +1,9 @@
 <div class="">
-  <label>{{provider.name}}</label>
-  <button type="button" (click)="addCategory()">Add Category</button>
+  <!--<label>{{provider.name}}</label>-->
+  
+  <div *ngIf="isProvider()">
+    <button type="button" (click)="addCategory()">Add Category</button>
+  </div>
 
   <table class="table">
     <thead>

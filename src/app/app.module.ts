@@ -22,6 +22,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { ProviderModule } from './provider/shared/provider.module';
 import { CategoryModule } from './category/shared/category.module';
 import { ProductModule  } from './product/shared/product.module'
+import { OrderModule  } from './order/shared/order.module'
+import { DashboardModule  } from './dashboard/shared/dashboard.module'
 
 //if not here no maps, couldnt take out to a module
 import { AddProviderComponent } from './provider/add-provider/add-provider.component';
@@ -35,7 +37,7 @@ import { BroadcastObjectService } from './shared/broadcast-object.service';
     AppComponent,  
     NavbarComponent,
     AddProviderComponent,      
-    LoginComponent                 
+    LoginComponent,                 
   ],
   imports: [
     BrowserModule,
@@ -50,6 +52,8 @@ import { BroadcastObjectService } from './shared/broadcast-object.service';
     ProviderModule,
     CategoryModule,    
     ProductModule,
+    OrderModule,
+    DashboardModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,  
     AngularFirestoreModule.enablePersistence()

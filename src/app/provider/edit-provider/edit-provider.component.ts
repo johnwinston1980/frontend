@@ -21,9 +21,14 @@ export class EditProviderComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.broadcastOjectService.currentProvider.subscribe(provider => {
-      this.provider = provider;
-    })
+    this.broadcastOjectService.currentUser.subscribe(user => {
+      this.providerService.init(user.id);
+      
+      this.broadcastOjectService.currentProvider.subscribe(provider => {
+        this.provider = provider;
+      })
+      
+    })    
   }
 
   updateProvider() {
@@ -36,7 +41,8 @@ export class EditProviderComponent implements OnInit {
   }
 
   addCategory() {
-    this.router.navigate(['/list-categories']);
+    console.log(this.provider.id)    
+    this.router.navigate(['/list-categories/'+this.provider.id]);
   }
 
 }

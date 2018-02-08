@@ -5,7 +5,11 @@ import { BroadcastObjectService } from '../../shared/broadcast-object.service'
 import { Category } from '../shared/category'
 import { CategoryService } from '../shared/category.service'
 
-import { Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
+
+import * as _ from 'lodash'
+
+import { User } from '../../shared/user'
 
 @Component({
   selector: 'app-list-categories',
@@ -16,19 +20,23 @@ import { Router } from '@angular/router'
 export class ListCategoriesComponent implements OnInit {
 
   categories: any;
-  provider: any;
+  providerId: any;
+  user: User;
 
   constructor(private broadcastOjectService: BroadcastObjectService,
     private router: Router,
-    private categoryService: CategoryService) { }
+    private route: ActivatedRoute,
+    private categoryService: CategoryService) {
+    this.providerId = this.route.snapshot.params['provId']
+  }
 
   ngOnInit() {
-    this.broadcastOjectService.currentProvider.subscribe(provider => {
-      this.provider = provider;
-      this.categoryService.init(this.provider.id);
-      this.categoryService.getCategories().subscribe(categories => {
-        this.categories = categories;
-      })
+    this.categoryService.init(this.providerId);
+    this.categoryService.getCategories().subscribe(categories => {
+      this.categories = categories;
+    })
+    this.broadcastOjectService.currentUser.subscribe( user => {
+      this.user = user;
     })
   }
 
@@ -40,6 +48,10 @@ export class ListCategoriesComponent implements OnInit {
   addCategory() {
     //this.broadcastOjectService.broadcastProvider(provider);
     this.router.navigate(['/add-category']);
+  }
+
+  isProvider(): boolean{
+    return !_.isEmpty(_.intersection(['provider'], this.user.roles));
   }
 
 }
