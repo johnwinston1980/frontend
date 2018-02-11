@@ -42,7 +42,7 @@ export class ListCategoriesComponent implements OnInit {
 
   editCategory(category) {
     this.broadcastOjectService.broadcastCategory(category);
-    this.router.navigate(['/edit-category']);
+    this.router.navigate(['/list-products']);
   }
 
   addCategory() {

@@ -20,16 +20,11 @@ export class ProviderService {
 
   constructor(private afs: AngularFirestore, private uploadFiles: UploadFilesService) {}
 
-  init(userId){
-    //cuando el user se loguea se guarda localmente el uid, para luego cargar los providers de este usuario
-    //var user = JSON.parse(localStorage.getItem('user'))
-    this.userId = userId
+  init(userId){    
+    this.userId = userId    
+    this.providersCollection = this.afs.collection('providers/', ref => ref.where('userId', '==', `${this.userId}`));
+    //this.providersCollection = this.afs.collection(`providers/${this.userId}/list`);
 
-    //aqui esta la consulta, este codigo fue ctrl + C -> ctrl + V de algun lugar, con minimos cambios
-    //this.providersCollection = this.afs.collection('providers/', ref => ref.where('userId', '==', `${this.userId}`));
-    this.providersCollection = this.afs.collection(`providers/${this.userId}/list`);
-
-    //aqui hay una magia, en este momento historico no entiendo bien esta parte pero eso pasa en los tiempo modernos ;-) lo que importa es que funciona
     this.providers = this.providersCollection.snapshotChanges().map(changes => {
       return changes.map(a => {
         const data = a.payload.doc.data() as Provider;
@@ -37,6 +32,7 @@ export class ProviderService {
         return data;
       });
     });
+
   }
 
   getProviders() {
@@ -44,8 +40,8 @@ export class ProviderService {
   }
 
   getProviderDetails(id) {
-    //this.providerDoc = this.afs.doc(`providers/${id}`);
-    this.providerDoc = this.afs.doc(`providers/${this.userId}/list/${id}`);
+    this.providerDoc = this.afs.doc(`providers/${id}`);
+    //this.providerDoc = this.afs.doc(`providers/${this.userId}/list/${id}`);
     return this.providerDoc;
   }
 
@@ -58,12 +54,14 @@ export class ProviderService {
   }
 
   deleteProvider(id: string) {
-    this.providerDoc = this.afs.doc(`providers/${this.userId}/list/${id}`);
+    //this.providerDoc = this.afs.doc(`providers/${this.userId}/list/${id}`);
+    this.providerDoc = this.afs.doc(`providers/${id}`);
     this.providerDoc.delete();
   }
 
   updateProvider(provider: Provider) {
-    this.providerDoc = this.afs.doc(`providers/${this.userId}/list/${provider.id}`);
+    //this.providerDoc = this.afs.doc(`providers/${this.userId}/list/${provider.id}`);
+    this.providerDoc = this.afs.doc(`providers/${provider.id}`);
     this.providerDoc.update(provider);
   }
 }
