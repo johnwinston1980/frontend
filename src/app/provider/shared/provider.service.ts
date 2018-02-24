@@ -32,7 +32,6 @@ export class ProviderService {
         return data;
       });
     });
-
   }
 
   getProviders() {
@@ -47,11 +46,16 @@ export class ProviderService {
 
   addProvider(provider: Provider, files: FileList) {
     provider.userId = this.userId;
-    this.providersCollection.add(provider).then((result) => {
-      //localStorage.setItem(localStorage.getItem('uid'), result.id);
-      this.uploadFiles.uploadFiles(files, result.id);
+    this.providersCollection.add(provider).then((result) => {      
+      this.uploadFiles.uploadFiles(files, result.id).then((url) => {
+        this.providerDoc = this.afs.doc(`providers/${result.id}`);
+        provider.image = String(url)
+        this.providerDoc.update(provider);
+      }).then((error) => {
+        console.log(error)
+      })
     });
-  }
+  }  
 
   deleteProvider(id: string) {
     //this.providerDoc = this.afs.doc(`providers/${this.userId}/list/${id}`);

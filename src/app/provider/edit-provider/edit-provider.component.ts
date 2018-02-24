@@ -40,9 +40,8 @@ export class EditProviderComponent implements OnInit {
     this.providerService.deleteProvider(provider.id);
   }
 
-  addCategory() {
-    console.log(this.provider.id)    
-    this.router.navigate(['/list-categories/'+this.provider.id]);
+  addCategory() {      
+    this.router.navigate(['/list-categories', this.provider.id]);
   }
 
 }

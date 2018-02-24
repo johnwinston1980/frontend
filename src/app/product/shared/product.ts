@@ -5,5 +5,6 @@ export interface Product {
     price?: number 
     categoryName?: string,
     providerId?: string,
-    categoryId?: string,         
+    categoryId?: string,     
+    image?: string    
   }
