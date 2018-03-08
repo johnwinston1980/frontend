@@ -5,6 +5,8 @@ import { BroadcastObjectService } from '../../shared/broadcast-object.service'
 
 import { Router } from '@angular/router'
 
+import * as _ from 'lodash'
+
 @Component({
   selector: 'app-list-providers',
   templateUrl: './list-providers.component.html',
@@ -21,7 +23,14 @@ export class ListProvidersComponent implements OnInit {
 
   ngOnInit() {
     this.broadcastOjectService.currentUser.subscribe(user => {
-      this.providerService.init(user.id)
+      
+      if (!_.isEmpty(_.intersection(['admin'], user.roles))) {
+        this.providerService.initAdmin()
+      }
+      else{
+        this.providerService.init(user.id)
+      }
+      
       this.providerService.getProviders().subscribe(providers => {
         this.providers = providers;
       })

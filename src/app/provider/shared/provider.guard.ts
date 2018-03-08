@@ -22,7 +22,7 @@ export class ProviderGuard implements CanActivate {
 
   check(url): boolean {
 
-    var allowedRoles = ['provider', 'admin', 'cashier'];
+    var allowedRoles = ['provider', 'admin'];
     var authorized = false;
 
     this.broadcastOjectService.currentUser.subscribe(user => {

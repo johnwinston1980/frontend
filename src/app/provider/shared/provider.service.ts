@@ -20,6 +20,18 @@ export class ProviderService {
 
   constructor(private afs: AngularFirestore, private uploadFiles: UploadFilesService) {}
 
+  initAdmin(){         
+    this.providersCollection = this.afs.collection('providers/');    
+
+    this.providers = this.providersCollection.snapshotChanges().map(changes => {
+      return changes.map(a => {
+        const data = a.payload.doc.data() as Provider;
+        data.id = a.payload.doc.id;
+        return data;
+      });
+    });
+  }
+
   init(userId){    
     this.userId = userId    
     this.providersCollection = this.afs.collection('providers/', ref => ref.where('userId', '==', `${this.userId}`));

@@ -58,7 +58,7 @@ export class NavbarComponent implements OnInit {
   }
 
   isAdmin(): boolean {
-    return !_.isEmpty(_.intersection(['admin'], this.user.roles))
+    return !_.isEmpty(_.intersection(['admin', 'provider'], this.user.roles))
   }
 
 }
