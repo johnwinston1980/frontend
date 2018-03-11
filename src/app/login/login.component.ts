@@ -94,4 +94,11 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  /*
+  dummy function
+  */
+ dummy(){
+   
+ }
+
 }

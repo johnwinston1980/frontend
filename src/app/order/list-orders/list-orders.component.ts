@@ -45,12 +45,7 @@ export class ListOrdersComponent implements OnInit {
 
   }
 
-  /**
-   * dummy function
-   */
-   helloWorld(){
-     
-   }
+ 
   
 
 }
