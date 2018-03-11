@@ -39,14 +39,23 @@ export class ListOrdersComponent implements OnInit {
     this.broadcastOjectService.currentUser.subscribe(user => {
       this.user = user;
     })
-
-   
-
+    
     this.orderService.getOrders().subscribe(orders => {
       this.orders = orders
     })
-
+  
   }
+
+
+  getStatusClass(s){
+    if(s === 'pending'){
+      return 'penndingOrder'
+    }
+    else{
+      return 'canceledOrder'
+    }
+  }
+
   
 
 }

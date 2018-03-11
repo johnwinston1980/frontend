@@ -1,0 +1,36 @@
+.orderCard{
+    padding: 25px 15px;
+    background: #f6f6f6;
+    box-shadow: -9px 9px 12px 0 rgba(0, 0, 0, 0.45);
+    margin:  15px;
+    max-width: 320px;   
+}
+
+.userNameOrder{
+    margin: 10px 5px;
+    padding: 15px;
+    border-radius: 7px;
+    text-align: left;
+    font-size: 19px;
+    color:#444 ;    
+}
+
+.penndingOrder{
+    padding: 15px;
+    background-color: salmon;
+    border-radius: 7px;
+    text-align: left;
+    font-size: 19px;
+    color:#f6f6f6 ;
+    cursor: pointer;  
+}
+  
+.canceledOrder{
+    padding: 15px;
+    background-color: #c2b2b2;
+    border-radius: 7px;
+    text-align: left;
+    font-size: 19px;
+    color:#777777 ;    
+    cursor: pointer;   
+}
