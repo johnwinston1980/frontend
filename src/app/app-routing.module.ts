@@ -19,6 +19,7 @@ import { LoginComponent } from './login/login.component'
 import { ProviderGuard } from './provider/shared/provider.guard'
 
 
+
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'add-provider', component: AddProviderComponent, canActivate: [ProviderGuard]},
@@ -30,7 +31,7 @@ const routes: Routes = [
   { path: 'add-product', component: AddProductComponent },
   { path: 'list-products', component: ListProductsComponent },
   { path: 'edit-product', component: EditProductComponent },
-  { path: 'list-orders', component: ListOrdersComponent },
+  { path: 'list-orders/:provId', component: ListOrdersComponent },
   { path: 'add-user', component: AddUserComponent },
   /*{ path: 'items', component: ItemsListComponent, canActivate: [AuthGuard] },
   { path: 'notes', component: NotesListComponent,  canActivate: [AuthGuard] },

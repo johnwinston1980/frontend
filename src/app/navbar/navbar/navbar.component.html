@@ -4,9 +4,9 @@
     <li *ngIf="(userAuthState | async) && isAdmin()">
       <a [routerLink]="['/list-providers']">Manage Providers</a>
     </li>   
-    <li *ngIf="(userAuthState | async) && isCashier()">
+    <!--<li *ngIf="(userAuthState | async) && isCashier()">
       <a [routerLink]="['/list-orders']">Manage Orders</a>
-    </li>    
+    </li>  -->  
   </ul>
 
 

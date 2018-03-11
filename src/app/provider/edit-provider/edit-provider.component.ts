@@ -44,4 +44,8 @@ export class EditProviderComponent implements OnInit {
     this.router.navigate(['/list-categories', this.provider.id]);
   }
 
+  orders(){
+    this.router.navigate(['/list-orders', this.provider.id]);        
+  }
+
 }

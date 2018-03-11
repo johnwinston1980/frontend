@@ -1,4 +1,20 @@
-<p>
-  list-orders works!
-  <button type="button" (click)="disableProduct()">Disable Product</button>
-</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th width="20%">Status</th>
+      <th width="50%">Id</th>
+      <th width="30%">Recogida</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let order of orders">
+      <td>
+        <strong>{{ order.status }}</strong>
+      </td>
+      <td>{{ order.id }}</td>   
+      <td>{{ order.pickupTime }}</td>    
+    </tr>
+  </tbody>
+</table>
