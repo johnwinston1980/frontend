@@ -27,9 +27,6 @@ export class ListOrdersComponent implements OnInit {
     private router: Router, private route: ActivatedRoute) {
 
     this.providerId = this.route.snapshot.params['provId']
-
-    
-
     this.orderService.init(this.providerId)
 
   }
@@ -47,6 +44,13 @@ export class ListOrdersComponent implements OnInit {
     })
 
   }
+
+  /**
+   * dummy function
+   */
+   helloWorld(){
+     
+   }
   
 
 }
