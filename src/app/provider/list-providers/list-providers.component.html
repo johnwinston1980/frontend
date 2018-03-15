@@ -2,31 +2,38 @@
 
   <button type="button" class="btn btn-edit btn-xs" (click)="addProvider()">Add Provider</button>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th width="50%">Name</th>
-        <th width="50%">Address</th>
-
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let provider of providers">
-        <td>
-          <strong>{{ provider.name }}</strong>
-        </td>
-        <td>{{ provider.address.formatted_address }}</td>
-        <td>
-          <ul>
-            <li>
-              <button type="button" class="btn btn-edit btn-xs" (click)="editProvider(provider)">
-                <span class="glyphicon glyphicon-edit"></span> Edit
-              </button>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="Tbody_Hrm">
+    <div class="Ttr_Hrm" *ngFor="let provider of providers">
+      <span>
+        <strong>{{ provider.name }}</strong>
+      </span>
+      <div class="flexSpace"></div>  
+      <p>{{ provider.address.formatted_address }}</p>
+      <div class="flexSpace" ></div>  
+      <a class="Ttr_Hrm_a" >
+        <popup-buttom>
+          <popup-container>
+            <div class="ContItmPop">
+              <div class="ItmPop" (click)="editProvider(provider)">
+                  <span>Edit</span>                                                       
+                </div>
+                <div class="ItmPop"  (click)="deleteProvider(provider)">
+                    <span>Delete</span>      
+                    
+                </div>
+                <div class="ItmPop"  (click)="addCategory(provider)">
+                    <span>Add Category</span>      
+                    
+                </div>
+                <div class="ItmPop"  (click)="orders(provider)">
+                    <span>Order List</span>      
+                    
+                </div>
+            </div>                               
+          </popup-container> 
+        </popup-buttom>
+                 
+      </a>
+    </div>
+  </div>
 </div>

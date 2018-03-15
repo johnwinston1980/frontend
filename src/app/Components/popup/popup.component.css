@@ -1,0 +1,32 @@
+.overlayHRM {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */   
+    height: 100%;
+    width: 100%;
+    position: fixed; /* Stay in place */
+    z-index: 10; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color:transparent; /* Black fallback color */
+    /*background-color: rgba(0,0,0, 0.6); /* Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+
+.popupHRM {    
+    width: 240px;
+    max-height: 320px;
+    position: fixed;    
+    background-color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 221; /* 1px higher than the overlay layer */
+    box-shadow: 0px 3px 15px 3px rgba(46,61,73,0.15);
+    border-radius: 0.375rem;
+    transition: all 0.3s ease;
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 81.25%;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}

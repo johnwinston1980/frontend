@@ -1,9 +1,17 @@
-.orderCard{
-    padding: 25px 15px;
+.flexSpace{
+    -ms-flex: 1 1 0.000000001px;
+    -webkit-flex: 1;
+    flex: 1;
+    -webkit-flex-basis: 0.000000001px;
+    flex-basis: 0.000000001px;
+  }
+
+.orderCard{    
     background: #f6f6f6;
     box-shadow: -9px 9px 12px 0 rgba(0, 0, 0, 0.45);
-    margin:  15px;
-    max-width: 320px;   
+    margin: 15px auto;
+    width: 320px;
+    max-width: 320px;
 }
 
 .userNameOrder{
@@ -15,22 +23,113 @@
     color:#444 ;    
 }
 
-.penndingOrder{
+._OrderStatus{
     padding: 15px;
-    background-color: salmon;
-    border-radius: 7px;
-    text-align: left;
-    font-size: 19px;
-    color:#f6f6f6 ;
-    cursor: pointer;  
+    border-top-right-radius:6px;
+    border-top-left-radius:6px;   
+    text-align: center;
+    font-size: 19px;       
+    cursor: pointer;    
+}
+
+._pennding{
+    background-color: salmon;    
+    color:#f6f6f6 ;    
 }
   
-.canceledOrder{
-    padding: 15px;
-    background-color: #c2b2b2;
-    border-radius: 7px;
-    text-align: left;
+._canceled{
+   background-color: #c2b2b2;    
+    color:#777777;  
+}
+
+._ready{
+    background-color: #009688;    
+    color:#f6f6f6 ;
+}
+
+._OrderStatus div{
+    display: flex;
+}
+
+._OrderStatus div span{
+    display: inline-flex;
+}
+
+.FlexList {
+    box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.FlexItem {
+    box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    display: inline-block;
+    text-align: center;
+}
+
+.ModalStatusConfirm{    
+    background: #f6f6f6;
+    box-shadow: -9px 9px 12px 0 rgba(0, 0, 0, 0.45);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-160px) translateY(-120px);    
+    min-height: 240px;
+    min-width: 320px;
+}
+
+.ConfirmButtonsContainer{
+    display: inline-flex;
+    width: 95%;
+    margin: 15px auto;
+}
+
+.ConfirmTitleContainer{
+    background: #054a99;
+    padding: 7px 12px;
+    color: #f6f6f6;
+}
+
+.ConfirmButton{
+    padding: 15px 12px;    
+    display: block;
+    min-width: 120px;
+    height: 21px;
+    cursor: pointer;
+    margin: 5px auto;
+    border: 1px solid transparent;
+    outline: none;
+    border-radius: 4px;
     font-size: 19px;
-    color:#777777 ;    
-    cursor: pointer;   
+    font-weight: bold; 
+}
+
+._Succes{    
+    background-color: #009688;    
+    color: #fff;
+    
+} 
+
+._Cancel{
+    background-color: #c2b2b2;
+    color: #444;    
+}
+
+
+.FloatButtonOrder2PickUp{
+    position: fixed;
+    top: 25px;
+    right: 65px;
+    border-radius: 50%;
+    box-shadow: -9px 9px 12px 0 rgba(0, 0, 0, 0.45);
+    z-index: 9;
+    padding: 7px 8px 5px 8px;
+    background-color: #f6f6f6;
+    cursor: pointer;
+
 }

@@ -1,0 +1,12 @@
+<div>
+	<div [ngStyle]="DescStyles">
+	<ul class="tabsTitleContainer" >
+		<li *ngFor="let t of items" (click)="selectTab(t)" class="tabs" [class.tabsActive]="t.active">
+			<span>
+				{{t.title}}
+			</span>			
+		</li>
+	</ul>
+	</div>
+	<ng-content></ng-content>	
+</div>

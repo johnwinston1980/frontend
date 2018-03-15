@@ -18,8 +18,10 @@ import { OrderService } from '../shared/order.service'
 export class ListOrdersComponent implements OnInit {
 
   user: User;
-  providerId: string
-  orders: any
+  providerId: string;
+  orders: any;
+  _order: any;
+
 
   constructor(
     private broadcastOjectService: BroadcastObjectService,
@@ -36,16 +38,29 @@ export class ListOrdersComponent implements OnInit {
     this.broadcastOjectService.currentUser.subscribe(user => {
       this.user = user;
     })
-
-   
-
     this.orderService.getOrders().subscribe(orders => {
+      console.log(orders)
       this.orders = orders
     })
 
   }
 
- 
-  
+  ChangeStatus(order){
+    this._order.status = 'ready';
+    this.orderService.updateOrder(this.providerId,this._order);
+  }
+
+
+  getStatusClass(s){
+    if(s==='pending'){
+      return '_OrderStatus _pennding'
+    }
+    else if(s==='ready'){
+      return '_OrderStatus _ready'
+    }
+    else{
+      return '_OrderStatus _canceled'
+    }
+  }
 
 }

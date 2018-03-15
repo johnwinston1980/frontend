@@ -16,7 +16,7 @@ import {ProviderGuard} from '../shared/provider.guard';
     FormsModule,
     ReactiveFormsModule,
   ],
-  declarations: [EditProviderComponent, ListProvidersComponent],
+  declarations: [],
   providers: [ ProviderGuard ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]  
 })

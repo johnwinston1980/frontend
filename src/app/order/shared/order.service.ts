@@ -13,21 +13,14 @@ export class OrderService {
   orders: Observable<Order[]>;
   orderDoc: AngularFirestoreDocument<Order>;
 
-  /*imagesCollection: AngularFirestoreCollection<Upload>;
-  images: Observable<Upload[]>;*/
-
-  providerId: string;
+  orderId: string;
   
 
   constructor(private afs: AngularFirestore) { }
 
 
   init(providerId: string) {
-    this.providerId = providerId;
-    
-
-    this.ordersCollection = this.afs.collection(`orders/${this.providerId}/list`);
-    
+    this.ordersCollection = this.afs.collection(`orders/${providerId}/list`);
     this.orders = this.ordersCollection.snapshotChanges().map(changes => {
       return changes.map(a => {
         const data = a.payload.doc.data() as Order;
@@ -41,4 +34,8 @@ export class OrderService {
     return this.orders
   }
 
+  updateOrder(providerId,order: Order) {
+    this.orderDoc = this.afs.doc(`orders/${providerId}/list/${order.id}`);
+    this.orderDoc.update(order);
+  }
 }

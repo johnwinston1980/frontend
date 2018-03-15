@@ -1,11 +1,39 @@
 <div class="FlexList" style="width:100%">
   <div *ngFor="let order of orders" class="FlexItem orderCard">      
-    <div [class]="getStatusClass(order.status)">
-        {{order.status}}
+    <div [class]="getStatusClass(order.status)" (click)="oop.Open();_order=order">
+        <div>
+            <span style="text-transform:uppercase;">
+                {{order.status}}
+            </span>
+            <div class="flexSpace"></div>  
+            <span>
+                {{order.pickupTime | timeLeft}}
+            </span>
+        </div>
     </div>
     <span>{{ order.id }}</span>  
-      <div class="userNameOrder"> 
-          {{order.pickupTime}}
+      <div   class="userNameOrder"> 
+        <div *ngFor="let prdt of order.products">
+            {{prdt.name}}
+        </div>          
       </div>
   </div>
 </div> 
+<div class="FloatButtonOrder2PickUp">
+        <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/59262-200.png" width="40" height="40">
+</div>
+<dialogHRM #oop>
+    <div class="ModalStatusConfirm">
+        <div class="ConfirmTitleContainer">
+                <h2> Are you want confirm the order is ready</h2>
+        </div>        
+        <div class="ConfirmButtonsContainer">
+            <div class="ConfirmButton _Succes"  (click)="ChangeStatus();oop.Close()">
+                Confirm
+            </div>
+            <div class="ConfirmButton _Cancel"  (click)="oop.Close()" >
+                Cancel
+            </div>
+        </div>
+    </div>
+</dialogHRM>

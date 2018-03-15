@@ -31,13 +31,35 @@ import { AddProviderComponent } from './provider/add-provider/add-provider.compo
 import { UploadFilesService } from './shared/upload-files.service';
 import { BroadcastObjectService } from './shared/broadcast-object.service';
 
+import { EditProviderComponent } from './provider/edit-provider/edit-provider.component'
+import { ListProvidersComponent } from './provider/list-providers/list-providers.component'
+import { ListOrdersComponent } from './order/list-orders/list-orders.component';
+
+import {TimeLeftPipe} from './order/shared/minuteLeft.pipe' 
+
+import {  
+  DialogComponent,
+  IconsComponent,
+  PopupComponent,
+  PopupcontainerComponent,
+  SlidemenuComponent
+ } from './Components';
 
 @NgModule({
   declarations: [
     AppComponent,  
     NavbarComponent,
-    AddProviderComponent,      
-    LoginComponent,                 
+    AddProviderComponent, 
+    EditProviderComponent,
+    ListProvidersComponent,     
+    LoginComponent,
+    DialogComponent,
+    IconsComponent,
+    PopupComponent,
+    PopupcontainerComponent,
+    ListOrdersComponent,
+    SlidemenuComponent,
+    TimeLeftPipe             
   ],
   imports: [
     BrowserModule,

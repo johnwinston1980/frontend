@@ -4,12 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ListOrdersComponent } from '../list-orders/list-orders.component';
 
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,   
   ],
-  declarations: [ ListOrdersComponent ]
+  declarations: [  ]
 })
 export class OrderModule { }

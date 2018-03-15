@@ -1,0 +1,80 @@
+.Tbody_Hrm{
+    background: #fff;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.Tbody_Hrm .Ttr_Hrm{
+    background: #fff;
+    padding: 12px 0;    
+    font-size: 13px;
+    border-top: 1px solid #d2d2d2;
+    display: flex;
+}
+
+.Ttr_Hrm span{
+    background: #fff;
+    padding: 7px 0;
+    height: 19px;
+    font-size: 13px;
+    display: inline-block;
+    color:#444444;
+    margin-right:25px; 
+    width: 25%;
+}
+.Ttr_Hrm p{
+    background: #fff;    
+    height: 19px;
+    font-size: 13px;
+    display: inline-block;
+    margin:  5px 0;
+    color:#797979;
+}
+.Ttr_Hrm .Ttr_Hrm_a{
+    background: #fff;
+    padding: 7px 0;
+    height: 19px;
+    font-size: 13px;
+    margin-left:  15px ;
+    display: inline-block;
+    color:#616161;
+    width: 5%;
+}
+
+.flexSpace{
+    -ms-flex: 1 1 0.000000001px;
+    -webkit-flex: 1;
+    flex: 1;
+    -webkit-flex-basis: 0.000000001px;
+    flex-basis: 0.000000001px;
+  }
+
+.ContItmPop{
+    display: block;
+    width: 100%;
+}
+
+.ItmPop{
+    display: block;
+    color:#616161;
+    width: 100%;
+    padding: 14px 0;
+    text-align: left;
+}
+
+.ItmPop:hover{
+    background-color: #f6f6f6;
+    cursor: pointer;
+}
+
+.ItmPop:hover span{
+    background-color: #f6f6f6;
+}
+.ContItmPop .ItmPop span{
+    width:calc(100% - 20px)  ;
+    padding: 2px 10px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    text-transform: none;  
+}

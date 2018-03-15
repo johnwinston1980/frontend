@@ -1,0 +1,20 @@
+<div>
+	<div>
+	<ul class="FlexList" >
+		<li *ngFor="let t of items; let i = index" (click)="selectTab(t,i)" class="FlexItem tabsItem" [class.tabsActive]="t.active"  style="max-width:160px">			
+      <a>
+        <div>
+          {{t.title}}
+        </div>
+        <span class="tabs__underline underline" style="width:100%">
+          <span class="underline__inner"></span>
+        </span>	
+      </a>		
+		</li>
+	</ul>
+  </div>
+  <div class="tabsWrapper">
+      <ng-content></ng-content>	
+  </div>
+	
+</div>
