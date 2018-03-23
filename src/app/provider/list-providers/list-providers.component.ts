@@ -57,8 +57,9 @@ export class ListProvidersComponent implements OnInit {
     this.providerService.deleteProvider(provider.id);
   }
 
-  addCategory(provider) {      
-    this.router.navigate(['/list-categories', provider.id]);
+  addCategory(provider) {   
+    this.broadcastOjectService.broadcastProvider(provider)   
+    this.router.navigate(['/list-categories']);
   }
 
   orders(provider){

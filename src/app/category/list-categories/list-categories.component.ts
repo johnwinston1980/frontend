@@ -20,24 +20,30 @@ import { User } from '../../shared/user'
 export class ListCategoriesComponent implements OnInit {
 
   categories: any;
-  providerId: any;
+  provider: any;
   user: User;
 
   constructor(private broadcastOjectService: BroadcastObjectService,
     private router: Router,
     private route: ActivatedRoute,
     private categoryService: CategoryService) {
-    this.providerId = this.route.snapshot.params['provId']
+    //this.providerId = this.route.snapshot.params['provId']
   }
 
   ngOnInit() {
-    this.categoryService.init(this.providerId);
-    this.categoryService.getCategories().subscribe(categories => {
-      this.categories = categories;
+
+    this.broadcastOjectService.currentProvider.subscribe(provider => {
+      this.provider = provider
+      this.categoryService.init(this.provider.id);
+      this.categoryService.getCategories().subscribe(categories => {
+        this.categories = categories;
+      })
     })
-    this.broadcastOjectService.currentUser.subscribe( user => {
+
+    this.broadcastOjectService.currentUser.subscribe(user => {
       this.user = user;
     })
+    
   }
 
   editCategory(category) {
@@ -50,7 +56,7 @@ export class ListCategoriesComponent implements OnInit {
     this.router.navigate(['/add-category']);
   }
 
-  isProvider(): boolean{
+  isProvider(): boolean {
     return !_.isEmpty(_.intersection(['provider'], this.user.roles));
   }
 
