@@ -1,17 +1,45 @@
 <div id="navbar">
-  
-  <ul>    
-    <li *ngIf="(userAuthState | async) && isAdmin()">
-      <a [routerLink]="['/list-providers']">Manage Providers</a>
-    </li>   
-    <!--<li *ngIf="(userAuthState | async) && isCashier()">
-      <a [routerLink]="['/list-orders']">Manage Orders</a>
-    </li>  -->  
-  </ul>
-  <ul>
-      <!--<li *ngIf="!(user | async)"> <a (click)="login()">Login</a> </li>-->
-      <li *ngIf="(userAuthState | async)">  <a (click)="logout()">Logout: {{displayName}}</a> </li>
-  </ul>
-  
-
+  <div class="NavFlex">
+    <div class="NavItems">
+        <hrm-icons [style.cursor]="'pointer'" [type]="'menu'"   [dimention]="24" [fill]="'aaa'" (click)="MnSld.Open()"></hrm-icons>     
+    </div> 
+    <div class="flexSpace"></div>     
+    <div  class="NavItems">
+        <a class="Ttr_Hrm_a" >
+            <popup-buttom [icon]="'user'" [fill]="'aaa'">
+              <popup-container>
+                <div class="ContItmPop">
+                  <div class="HeaderPop">
+                      <span *ngIf="(userAuthState | async)"> <a>{{displayName}}</a></span>                                                       
+                  </div>                 
+                  <div class="ItmPop"  (click)="logout()">
+                      <span *ngIf="(userAuthState | async)"> Logout </span>
+                  </div>
+                  <div class="ItmPop"  (click)="logout()">
+                      <span *ngIf="(userAuthState | async)"> Logout </span>
+                  </div>
+                  <div class="ItmPop"  (click)="logout()">
+                      <span *ngIf="(userAuthState | async)"> Logout </span>
+                  </div>
+                  <div class="ItmPop"  (click)="logout()">
+                      <span *ngIf="(userAuthState | async)"> Logout </span>
+                  </div>
+                </div>                               
+              </popup-container> 
+            </popup-buttom>                     
+          </a>
+    </div> 
+  </div>
 </div>
+
+<hrm-slide-menu #MnSld [orientation]="'left'">
+  <div class="MenuItm" *ngIf="(userAuthState | async) && isAdmin()" (click)="MnSld.Close()">
+    <a [routerLink]="['/list-providers']">        Manage Providers   </a>
+  </div>
+  <div class="MenuItm" *ngIf="(userAuthState | async) && isAdmin()" (click)="MnSld.Close()">
+    <a [routerLink]="['/list-categories']">        Manage Categories   </a>
+  </div>
+  <div class="MenuItm" *ngIf="(userAuthState | async) && isAdmin()" (click)="MnSld.Close()">
+    <a [routerLink]="['/list-orders']">        Manage Orders </a>
+  </div>
+</hrm-slide-menu>

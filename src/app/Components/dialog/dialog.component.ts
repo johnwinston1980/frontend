@@ -19,7 +19,8 @@ export class DialogComponent implements AfterViewInit{
 	private sl:number = 0;	
 	
 	constructor(private elm:ElementRef) {	}
-	@Output() confirm = new EventEmitter();	
+	@Output() confirm = new EventEmitter();
+	@Output() afterClose = new EventEmitter();		
 	ngAfterViewInit(){
 		
   	}
@@ -28,6 +29,7 @@ export class DialogComponent implements AfterViewInit{
 	}
 	Close(){		
 		this.show = false;
+		this.afterClose.emit(true);
 	}
 	Go(){
 		this.show = false;

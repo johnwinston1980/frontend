@@ -6,29 +6,27 @@
     z-index: 10; /* Sit on top */
     left: 0;
     top: 0;
-    background-color: transparent; /* Black fallback color */
-    /* background-color: rgba(0,0,0, 0.6); Black w/opacity */
+    /*background-color: transparent; /* Black fallback color */
+    background-color: rgba(0,0,0, 0.6); /*Black w/opacity */
     overflow-x: hidden; /* Disable horizontal scroll */
     transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
 }
 
 
 .sm {
-    width: 220px;
-    height: 100%;
-    line-height: 200px;
+    width: 350px;
+    height: 100%;    
     position: fixed;
-    top: 0; 
-    left: -250px;    
+    top: 0;   
     background-color: #fff;
     border-top-left-radius: 0;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 0;
-    text-align: center;
+    border-bottom-left-radius: 0;   
     z-index: 211; /* 1px higher than the overlay layer */
     box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);    
-   -moz-transition: left .14s ease-in-out;
-    -webkit-transition: left .14s ease-in-out;
-    transition: left .14s ease-in-out;
+   -moz-transition: left .14s ease-in-out, right .14s ease-in-out;
+    -webkit-transition: left .14s ease-in-out, right .14s ease-in-out;
+    transition: left .14s ease-in-out, right .14s ease-in-out;
 }
+

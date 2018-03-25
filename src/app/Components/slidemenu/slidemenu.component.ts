@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild,Output, EventEmitter,Renderer2 } from '@angular/core';
+import { Component, OnInit, ElementRef, Input, Output, EventEmitter,Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'hrm-slide-menu',
@@ -7,22 +7,27 @@ import { Component, OnInit, ElementRef, ViewChild,Output, EventEmitter,Renderer2
 })
 export class SlidemenuComponent implements OnInit {
 
-  
-  ngOnInit() {
-  }
-  @ViewChild('slm') slm:ElementRef;	
-	public show:boolean = false;
-	constructor(private elm:ElementRef, private render:Renderer2) {	}
+  public show:boolean = false;
+	@Input() orientation:string = 'left';	
 	@Output() confirm = new EventEmitter();	
-	
+	constructor(private elm:ElementRef, private render:Renderer2) {	}	
+
+	ngOnInit() {
+		this.show = false;
+		var slm = this.elm.nativeElement.children[0]
+		this.render.setStyle(<any>slm,this.orientation,'-450px');
+  }
+
 
 	Open(){
 		this.show = true;
-		this.render.setStyle(<any>this.slm.nativeElement,'left','0px');
+		var slm = this.elm.nativeElement.children[0]
+		this.render.setStyle(<any>slm,this.orientation,'0px');
 	}
 	Close(){
 		this.show = false;
-		this.render.setStyle(<any>this.slm.nativeElement,'left','-250px');
+		var slm = this.elm.nativeElement.children[0]
+		this.render.setStyle(<any>slm,this.orientation,'-450px');
 	}
 	Go(){
 		this.show = false;

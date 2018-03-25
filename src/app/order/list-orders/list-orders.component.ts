@@ -21,7 +21,8 @@ export class ListOrdersComponent implements OnInit {
   providerId: string;
   orders: any;
   _order: any;
-
+  searchOrder:any;
+  searchOrderDetail:any={id:'wqwruqwrqwrqwroiqglasidughiamsdogiugmiugnitbf92385623-52n9trmnvg,uw'};
 
   constructor(
     private broadcastOjectService: BroadcastObjectService,
@@ -38,8 +39,7 @@ export class ListOrdersComponent implements OnInit {
     this.broadcastOjectService.currentUser.subscribe(user => {
       this.user = user;
     })
-    this.orderService.getOrders().subscribe(orders => {
-      console.log(orders)
+    this.orderService.getOrders().subscribe(orders => {      
       this.orders = orders
     })
 
@@ -50,6 +50,42 @@ export class ListOrdersComponent implements OnInit {
     this.orderService.updateOrder(this.providerId,this._order);
   }
 
+  cleanDetails(){
+    this.searchOrder="";
+    this.searchOrderDetail={id:'wqwruqwrqwrqwroiqglasidughiamsdogiugmiugnitbf92385623-52n9trmnvg,uw'};
+  }
+  getOrderDetail(){    
+    let _ss = this.orders.filter(d=>{return d.id===this.searchOrder}); 
+    console.log(_ss)
+    if(_ss.length>0){
+      this.searchOrderDetail = _ss[0];
+    }    
+  }
+
+  getOrderStatusTitle(s){
+    if(s && s.status){
+      if(s.status==='pending'){
+        return ' Are you want confirm the order is ready'
+      }
+      else if(s.status==='ready'){
+        return 'This order is ready to pick up'
+      }
+    }else{
+      return '';
+    }
+  }
+  getOrderStatusPending(s){
+    if(s && s.status){
+      if(s.status==='pending'){
+        return true
+      }
+      else {
+        return false
+      }
+    }else{
+      return false;
+    }
+  }
 
   getStatusClass(s){
     if(s==='pending'){

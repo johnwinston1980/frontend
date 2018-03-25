@@ -1,6 +1,8 @@
 <div class="">
 
-  <button type="button" class="btn btn-edit btn-xs" (click)="addProvider()">Add Provider</button>
+  <div type="button" class="FloatButton _blueFB" (click)="addProvider()">
+      <hrm-icons [style.cursor]="'pointer'" [type]="'add'"   [dimention]="24" [fill]="'#fff'" (click)="Open()"></hrm-icons>
+  </div>
 
   <div class="Tbody_Hrm">
     <div class="Ttr_Hrm" *ngFor="let provider of providers">

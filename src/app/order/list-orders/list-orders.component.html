@@ -1,33 +1,35 @@
 <div class="FlexList" style="width:100%">
-  <div *ngFor="let order of orders" class="FlexItem orderCard">      
-    <div [class]="getStatusClass(order.status)" (click)="oop.Open();_order=order">
-        <div>
-            <span style="text-transform:uppercase;">
-                {{order.status}}
-            </span>
-            <div class="flexSpace"></div>  
-            <span>
-                {{order.pickupTime | timeLeft}}
-            </span>
+  <div *ngFor="let order of orders" class="FlexItem orderCard"> 
+      <div class="orderCardDiv">    
+        <div [class]="getStatusClass(order.status)" (click)="oop.Open();_order=order">
+            <div>
+                <span style="text-transform:uppercase;">
+                    {{order.status}}
+                </span>
+                <div class="flexSpace"></div>  
+                <span>
+                    {{order.pickupTime | timeLeft}}
+                </span>
+            </div>
+        </div>
+        <span>{{ order.id }}</span>  
+        <div   class="userNameOrder"> 
+            <div *ngFor="let prdt of order.products">
+                {{prdt.name}}
+            </div>          
         </div>
     </div>
-    <span>{{ order.id }}</span>  
-      <div   class="userNameOrder"> 
-        <div *ngFor="let prdt of order.products">
-            {{prdt.name}}
-        </div>          
-      </div>
   </div>
 </div> 
-<div class="FloatButtonOrder2PickUp">
+<div class="FloatButtonOrder2PickUp"  (click)="deliverOreder.Open()">
         <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/59262-200.png" width="40" height="40">
 </div>
 <dialogHRM #oop>
     <div class="ModalStatusConfirm">
         <div class="ConfirmTitleContainer">
-                <h2> Are you want confirm the order is ready</h2>
+                <h2>{{getOrderStatusTitle(_order)}}</h2>
         </div>        
-        <div class="ConfirmButtonsContainer">
+        <div class="ConfirmButtonsContainer" *ngIf="getOrderStatusPending(_order)">
             <div class="ConfirmButton _Succes"  (click)="ChangeStatus();oop.Close()">
                 Confirm
             </div>
@@ -35,5 +37,44 @@
                 Cancel
             </div>
         </div>
+        <div class="ConfirmButtonsContainer" *ngIf="!getOrderStatusPending(_order)">                
+                <div class="ConfirmButton _Cancel"  (click)="oop.Close()" >
+                    Close
+                </div>
+        </div>
+    </div>
+</dialogHRM>
+
+<dialogHRM #deliverOreder (afterClose)="cleanDetails()">
+    <div class="ModalDeliverOreder">
+        <form class="OrderDivInput" (submit)="getOrderDetail()" *ngIf="searchOrderDetail.id !== searchOrder">
+            <input type="text" [(ngModel)]="searchOrder"  name="search">
+        </form>
+        <div class="ConfirmButtonsContainer" *ngIf="searchOrderDetail.id == searchOrder">
+                <div class="ConfirmButton _Succes" *ngIf="searchOrderDetail.status==='ready'" (click)="deliverOreder.Close()">
+                    Deliver
+                </div>
+                <div class="ConfirmButton _Error" *ngIf="searchOrderDetail.status!=='ready'" (click)="deliverOreder.Close()">
+                    Not Ready
+                </div>
+                <div class="ConfirmButton _Cancel"  (click)="deliverOreder.Close()" >
+                    Close
+                </div>
+        </div>
+        <div class="OrderDivDetail">
+            <div *ngIf="searchOrderDetail.id == searchOrder">                
+                <div class="OrderDetai2PickUp">
+                    <span>{{ searchOrderDetail.id }}</span> 
+                    <div *ngIf="searchOrderDetail.status!=='ready'" class="orderNotReadyAlert">
+                        This order is not ready yet.
+                    </div>
+                    <div   class="OrderDetaiProducts"> 
+                        <div *ngFor="let prdt of searchOrderDetail.products">
+                                {{prdt.name}}
+                        </div>          
+                    </div>
+                </div>
+            </div>        
+        </div>         
     </div>
 </dialogHRM>

@@ -1,3 +1,86 @@
-#navbar{
-    background: lightblue;
+
+.NavFlex{
+    display: flex;
+    padding: 8px 12px;
+}
+
+
+.NavItems{
+    display: inline-flex;
+    padding: 8px;
+    height: 24px;
+    width: 24PX;
+}
+
+.flexSpace{
+    -ms-flex: 1 1 0.000000001px;
+    -webkit-flex: 1;
+    flex: 1;
+    -webkit-flex-basis: 0.000000001px;
+    flex-basis: 0.000000001px;
+  }
+
+  
+.ContItmPop{
+    display: block;
+    width: 100%;
+}
+
+.ItmPop{
+    display: block;
+    color:#616161;
+    width: 100%;
+    padding: 14px 0;
+    text-align: left;
+}
+
+.ItmPop:hover{
+    background-color: #f6f6f6;
+    cursor: pointer;
+}
+
+.ItmPop:hover span{
+    background-color: #f6f6f6;
+}
+.ContItmPop .ItmPop span{
+    width:calc(100% - 20px)  ;
+    padding: 2px 10px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    text-transform: none;  
+}
+
+.HeaderPop{
+    background-color: #c6c6c6;
+    cursor: default;
+    width: 100%;
+    padding: 14px 0;
+    text-align: center;
+    margin-bottom: 5px;
+    font-weight: 900;
+
+}
+
+.MenuItm{
+    width: 100%;    
+    padding: 15px 0;
+}
+
+.MenuItm a{
+    padding: 7px 10px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21px;
+    text-transform: capitalize;  
+    text-decoration: none;
+    outline: none;
+    color: #616161;
+}
+.MenuItm:hover{
+    background-color: #ddd;
+}
+.MenuItm:hover a{
+    color: #222222;
+    font-weight: 900;
 }
