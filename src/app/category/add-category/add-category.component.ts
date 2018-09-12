@@ -44,6 +44,6 @@ export class AddCategoryComponent implements OnInit {
 
   uploadMulti() {
     this.categoryService.addCategory(this.category, this.selectedFiles);
-    this.router.navigate(['/list-categories']);
+    this.router.navigate(['/list-categories', this.provider.id]);
   }
 }

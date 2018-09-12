@@ -1,4 +1,5 @@
 export interface Upload {
+    dir?: string,
     id?: string;  
     name?:string;
     url?:string;

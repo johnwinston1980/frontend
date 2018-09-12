@@ -3,6 +3,15 @@
   <input type="text" [(ngModel)]="provider.name" placeholder="Store name" name="name">
 </div>
 
+<mat-grid-list cols="3" rowHeight="5:1">
+  <mat-grid-tile *ngFor="let image of images" colspan="1" (click)="showImage(image)">
+
+      <img src="{{image.url}}" layout-fill>
+
+  </mat-grid-tile>
+</mat-grid-list>
+
+
 
 <button type="button" (click)="updateProvider()">Save Changes</button>
 
@@ -12,6 +21,11 @@
 
 <button type="button" (click)="addCategory()">Add Category</button>
 
-<button type="button" (click)="list()">Add Category</button>
-
 <button type="button" (click)="orders()">Mostrar Ordenes</button>
+
+<div class="images">
+  <label>Images</label>
+  <input type="file" class="button" (change)="detectFiles($event)" multiple>
+</div>
+
+<button type="button" (click)="addImage()">Add image</button>

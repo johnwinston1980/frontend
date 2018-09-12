@@ -48,7 +48,7 @@ export class ProductService {
     product.providerId = this.providerId;
     product.categoryId = this.categoryId;
     this.productsCollection.add(product).then((result) => {
-      this.uploadFiles.uploadFiles(files, result.id).then((url) => {
+      this.uploadFiles.uploadFiles(files, result.id, 'products').then((url) => {
         this.productDoc = this.afs.doc(`products/${this.providerId}/list/${this.categoryId}/list/${result.id}`);
         product.image = String(url)
         this.productDoc.update(product);

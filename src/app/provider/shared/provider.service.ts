@@ -58,9 +58,18 @@ export class ProviderService {
 
   addProvider(provider: Provider, files: FileList) {
     provider.userId = this.userId;
-    this.providersCollection.add(provider).then((result) => {      
+    /*this.providersCollection.add(provider).then((result) => {      
       this.uploadFiles.uploadFiles(files, result.id).then((url) => {
         this.providerDoc = this.afs.doc(`providers/${result.id}`);
+        provider.image = String(url)
+        this.providerDoc.update(provider);
+      }).then((error) => {
+        console.log(error)
+      })
+    });*/
+    this.afs.collection('providers').doc(provider.id).set(provider).then((result) => {           
+      this.uploadFiles.uploadFiles(files, provider.id, 'providers').then((url) => {
+        this.providerDoc = this.afs.doc(`providers/${provider.id}`);
         provider.image = String(url)
         this.providerDoc.update(provider);
       }).then((error) => {

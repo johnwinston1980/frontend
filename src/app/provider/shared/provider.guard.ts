@@ -42,5 +42,6 @@ export class ProviderGuard implements CanActivate {
     })
 
     return authorized;
+    //return true;
   }
 }

@@ -13,9 +13,10 @@ import { Upload } from './upload';
 @Injectable()
 export class UploadFilesService {
 
-  private basePath: string = '/uploads';
+  private basePath: string = '';
 
   currentUpload: Upload = {
+    dir: '',
     name: '',
     url: '',
     progress: 0,
@@ -41,8 +42,16 @@ export class UploadFilesService {
 
   }
 
-  init(parentId) {
-    this.uploadsCollection = this.afs.collection('uploads/' + parentId + '/images');
+
+  getImages() {
+    return this.uploads
+  }
+
+  init(parentId, dir) {
+    //this.uploadsCollection = this.afs.collection('uploads/' + parentId + '/images');
+    this.basePath = dir
+
+    this.uploadsCollection = this.afs.collection(`uploads/${parentId}/images/`);
 
     this.uploads = this.uploadsCollection.snapshotChanges().map(changes => {
       return changes.map(a => {
@@ -50,6 +59,26 @@ export class UploadFilesService {
         data.id = a.payload.doc.id;
         return data;
       });
+    });
+  }
+
+
+  deleteFile(parentId, imageId, fileName, dir) {
+    const storageRef = firebase.storage().ref();
+    // Create a reference to the file to delete
+    var desertRef = storageRef.child(`${dir}/${fileName}`);
+
+    // Delete the file
+    desertRef.delete().then(res => {
+      // File deleted successfully
+      console.log('File deleted successfully')
+      this.uploadsDoc = this.afs.doc(`uploads/${parentId}/images/${imageId}`);
+      this.uploadsDoc.delete();
+
+    }).catch(function (error) {
+      // Uh-oh, an error occurred!
+      console.log('Uh-oh, an error occurred!')
+      console.log(error)
     });
   }
 
@@ -67,9 +96,9 @@ export class UploadFilesService {
     });
   }*/
 
-  uploadFiles(fileList: FileList, parentId: string) {
+  uploadFiles(fileList: FileList, parentId: string, dir: string) {
 
-    this.init(parentId);
+    this.init(parentId, dir);
     let filesIndex = _.range(fileList.length - 1)
 
     _.each(filesIndex, (idx) => {
@@ -86,12 +115,16 @@ export class UploadFilesService {
           reject('Oops...something went wrong!')
       })
     })
-    
+
   }
 
   pushUpload(upload: Upload, file: File) {
     const storageRef = firebase.storage().ref();
-    let path = `${this.basePath}/${file.name}`;
+
+    let fileName = new Date().getTime() + '.jpg'
+    //let path = `${this.basePath}/${file.name}`;
+    let path = `${this.basePath}/${fileName}`;
+    
     const uploadTask = storageRef.child(path).put(file);
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
       (snapshot) => {
@@ -109,7 +142,8 @@ export class UploadFilesService {
 
       }, () => {
         upload.url = uploadTask.snapshot.downloadURL
-        upload.name = file.name
+        upload.name = fileName
+        upload.dir = this.basePath
         upload.createdAt = new Date();
         this.addUpload(upload)
       }
@@ -120,7 +154,11 @@ export class UploadFilesService {
     return new Promise((resolve, reject) => {
       let url
       const storageRef = firebase.storage().ref();
-      let path = `${this.basePath}/${file.name}`;
+
+      let fileName = new Date().getTime() + '.jpg'
+      //let path = `${this.basePath}/${file.name}`;
+      let path = `${this.basePath}/${fileName}`;
+
       const uploadTask = storageRef.child(path).put(file);
       uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
         (snapshot) => {
@@ -138,7 +176,8 @@ export class UploadFilesService {
 
         }, () => {
           upload.url = uploadTask.snapshot.downloadURL
-          upload.name = file.name
+          upload.name = fileName
+          upload.dir = this.basePath
           upload.createdAt = new Date();
           this.addUpload(upload)
           url = upload.url

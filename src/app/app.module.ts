@@ -24,6 +24,13 @@ import { CategoryModule } from './category/shared/category.module';
 import { ProductModule  } from './product/shared/product.module'
 import { OrderModule  } from './order/shared/order.module'
 import { DashboardModule  } from './dashboard/shared/dashboard.module'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+
+import { OverlayModule } from "@angular/cdk/overlay";
+import {MatDialogModule} from '@angular/material';
+
+//dialogs
+import { ImageDialogComponent } from './dialogs/image-dialog/image-dialog.component'
 
 //if not here no maps, couldnt take out to a module
 import { AddProviderComponent } from './provider/add-provider/add-provider.component';
@@ -59,7 +66,8 @@ import {
     PopupcontainerComponent,
     ListOrdersComponent,
     SlidemenuComponent,
-    TimeLeftPipe             
+    TimeLeftPipe,
+    ImageDialogComponent             
   ],
   imports: [
     BrowserModule,
@@ -78,8 +86,12 @@ import {
     DashboardModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,  
-    AngularFirestoreModule.enablePersistence()
+    AngularFirestoreModule.enablePersistence(),
+    OverlayModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
+  entryComponents: [ ImageDialogComponent ],
   providers: [UploadFilesService, BroadcastObjectService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -56,6 +56,11 @@ export class ListCategoriesComponent implements OnInit {
     this.router.navigate(['/add-category']);
   }
 
+  deleteCategory(category) {
+    this.categoryService.deleteCategory(category.id)
+    console.log('deleted category ' + category.name);    
+  }
+
   isProvider(): boolean {
     return !_.isEmpty(_.intersection(['provider'], this.user.roles));
   }

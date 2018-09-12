@@ -45,7 +45,7 @@ export class CategoryService {
   addCategory(category: Category, files: FileList) {
     category.providerId = this.providerId;
     this.categoriesCollection.add(category).then((result) => {
-      this.uploadFiles.uploadFiles(files, result.id).then((url) => {
+      this.uploadFiles.uploadFiles(files, result.id, 'categories').then((url) => {
         this.categoryDoc = this.afs.doc(`categories/${this.providerId}/list/${result.id}`);
         category.image = String(url)
         this.categoryDoc.update(category);
