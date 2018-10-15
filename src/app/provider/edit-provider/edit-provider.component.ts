@@ -80,4 +80,8 @@ export class EditProviderComponent implements OnInit {
     }) */
   }
 
+  addImage(){
+    
+  }
+
 }
