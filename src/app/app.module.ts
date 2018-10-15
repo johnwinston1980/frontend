@@ -44,7 +44,15 @@ import { ListOrdersComponent } from './order/list-orders/list-orders.component';
 
 import {TimeLeftPipe} from './order/shared/minuteLeft.pipe' 
 
-import {  
+import { CardComponent } from './Components/SlideCard/card.component'
+import { SlideCardsComponent } from './Components/SlideCard/slideCard.component'
+import { TabItemComponent } from './Components/tabs/tabs-item.component'
+import { TabsComponent } from './Components/tabs/tabs.component'
+import { FilterArraysPipe } from './order/shared/filter-arrays.pipe'
+
+
+
+import {      
   DialogComponent,
   IconsComponent,
   PopupComponent,

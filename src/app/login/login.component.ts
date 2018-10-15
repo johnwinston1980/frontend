@@ -53,8 +53,7 @@ export class LoginComponent implements OnInit {
 
     docRef.ref.get().then((doc) => {
       if (doc.exists) {
-        this.user.roles = doc.data().roles;
-        
+        this.user.roles = doc.data().roles;        
        
         //if for example user is cashier get appropriate data
         if(!_.isEmpty(doc.data().userId)){
@@ -63,7 +62,6 @@ export class LoginComponent implements OnInit {
         if(!_.isEmpty(doc.data().providerId)){
           this.user.providerId = doc.data().providerId          
         }
-
         
         //now save to localStorage
         localStorage.setItem('user', JSON.stringify(this.user));
@@ -97,8 +95,7 @@ export class LoginComponent implements OnInit {
   /*
   dummy function
   */
- dummy(){
-   
+ dummy(){   
  }
 
 }
