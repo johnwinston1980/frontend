@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
-import { NavbarComponent } from '../navbar/navbar.component'
+//import { NavbarComponent } from '../navbar/navbar.component'
 
 @NgModule({
   imports: [
@@ -12,6 +12,6 @@ import { NavbarComponent } from '../navbar/navbar.component'
     ReactiveFormsModule,
     RouterModule    
   ],
-  declarations: [ NavbarComponent ]
+  declarations: [  ]
 })
 export class NavbarModule { }
