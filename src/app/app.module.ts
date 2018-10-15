@@ -62,6 +62,13 @@ import {
 
 @NgModule({
   declarations: [
+    
+    CardComponent,
+    SlideCardsComponent,
+    TabItemComponent,
+    TabsComponent,
+    FilterArraysPipe,
+
     AppComponent,  
     NavbarComponent,
     AddProviderComponent, 
