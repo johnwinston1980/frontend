@@ -26,6 +26,14 @@
 </div>
 
 <div class="MenuItm" *ngIf="(userAuthState | async) && isAdmin()">
-  <a [routerLink]="['/list-providers']"> Manage Providers </a>
+  <a> This user is admin </a>
+</div>
+
+<div class="MenuItm" *ngIf="(userAuthState | async) && isProvider()">
+  <a [routerLink]="['/list-providers']"> Manage Providers (user is provider)</a>
+</div>
+
+<div class="MenuItm" *ngIf="(userAuthState | async) && isCashier()">
+  <a> This user is cashier </a>
 </div>
 

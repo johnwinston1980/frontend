@@ -48,9 +48,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /*
+    aqui se busca y se guarda info del user que se acaba de loguear
+  */ 
   setUpUser(username) {
     var docRef = this.loginService.getUserDetails(username);
-
     docRef.ref.get().then((doc) => {
       if (doc.exists) {
         this.user.roles = doc.data().roles;        
@@ -66,17 +68,18 @@ export class LoginComponent implements OnInit {
         //now save to localStorage
         localStorage.setItem('user', JSON.stringify(this.user));
         this.broadcastOjectService.broadcastUser(this.user);
-
         //check where to redirect
         this.redirect();
       }
       else {
         console.log('no role for this user in database')
       }
-    })
-    
+    })    
   }
 
+  /*
+  de aqui se redirecciona a la interfaz apropiada dependiendo del rol del user, interfaces que estan por implementarse
+  */
   redirect() {
     if (!_.isEmpty(_.intersection(['admin'], this.user.roles))) {
       this.router.navigate(['/add-user'])

@@ -53,12 +53,16 @@ export class NavbarComponent implements OnInit {
     //this.fM.show('You are logged out', {cssClass: 'alert-success', timeout: 3000});
   }
 
+  
+  isAdmin(): boolean {
+    return !_.isEmpty(_.intersection(['admin'], this.user.roles))
+  }
+
+  isProvider(): boolean {
+    return !_.isEmpty(_.intersection(['provider'], this.user.roles))
+  }
+
   isCashier(): boolean {
     return !_.isEmpty(_.intersection(['cashier'], this.user.roles))
   }
-
-  isAdmin(): boolean {
-    return !_.isEmpty(_.intersection(['admin', 'provider'], this.user.roles))
-  }
-
 }
